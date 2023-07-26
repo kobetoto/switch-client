@@ -10,7 +10,6 @@ function UserPage() {
   //video: numero 230 (1h23)
 
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
 
   axios
     .get("http://localhost:5005/api/verify", {
@@ -19,7 +18,6 @@ function UserPage() {
     .then(function (response) {
       console.log("response.data ===>", response.data);
       setName(response.data.name);
-      setEmail(response.data.email);
     })
     .catch((err) => console.log(err));
 
@@ -27,7 +25,12 @@ function UserPage() {
     <UserPageStyled>
       <h1>hello USERPAGE 👥</h1>
       <p>{name}</p>
-      <p>{email}</p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
+        nostrum laboriosam debitis maiores sit odio ipsum delectus sapiente
+        nesciunt incidunt, vitae minima nulla exercitationem fugiat quasi! Quo
+        commodi distinctio autem?
+      </p>
     </UserPageStyled>
   );
 }

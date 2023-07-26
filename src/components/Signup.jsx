@@ -44,29 +44,29 @@ function Signup() {
         }}
       >
         <label>
-          User Name:
           <input
             type="text"
             name="name"
             value={name}
+            placeholder="nom d'utilisateur"
             onChange={handleNameInput}
           />
         </label>
         <label>
-          email:
           <input
             type="email"
             name="email"
             value={email}
+            placeholder="adresse email"
             onChange={handleEmailInput}
           />
         </label>
         <label>
-          Mot de passe:
           <input
             type="password"
             name="password"
             value={password}
+            placeholder="mot de passe"
             onChange={handlePasswordInput}
           />
         </label>
@@ -80,6 +80,7 @@ function Signup() {
 const SignupStyled = styled.div`
   height: 400px;
   width: 700px;
+  margin-bottom: 42px;
   border: 10px solid #ef4f67;
   border-radius: 42px;
   background-color: #ef4f67;
@@ -117,7 +118,25 @@ const SignupStyled = styled.div`
   }
 
   input {
+    height: 42px;
+    width: 189px;
     margin: 30px;
+    color: #ef4f67;
+    background-color: white;
+    border: 1px solid white;
+    border-color: white;
+    border-radius: 42px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 1s ease-out;
+  }
+
+  input:hover {
+    background-color: #ef4f67;
+    color: white;
+    border-radius: 42px;
+    border-color: white;
+    transform: fade();
   }
 `;
 

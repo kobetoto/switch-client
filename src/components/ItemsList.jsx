@@ -17,6 +17,7 @@ function ItemsList() {
 
   // [ <div>, <div> ]
   const itemcards = items.map(function (el) {
+    console.log("el ====>", el);
     return (
       <div key={el._id} style={{ border: "1px solid pink" }}>
         <a href="">

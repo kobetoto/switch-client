@@ -48,25 +48,19 @@ function Login() {
     <LoginStyled>
       <h1>LOGIN</h1>
       <form onSubmit={handleLoginSubmit}>
-        <label>
-          email:
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleEmailInput}
-          />
-        </label>
-        <label>
-          Mot de passe:
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handlePasswordInput}
-          />
-        </label>
+        <input
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleEmailInput}
+        />
 
+        <input
+          type="password"
+          name="password"
+          value={password}
+          onChange={handlePasswordInput}
+        />
         <button>LOGIN</button>
       </form>
     </LoginStyled>
@@ -75,7 +69,7 @@ function Login() {
 
 const LoginStyled = styled.div`
   height: 300px;
-  width: 700px;
+  width: 810px;
   border: 10px solid #ef4f67;
   border-radius: 42px;
   background-color: #ef4f67;
@@ -113,7 +107,12 @@ const LoginStyled = styled.div`
   }
 
   input {
+    height: 42px;
+    width: 189px;
     margin: 30px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 42px;
   }
 `;
 
