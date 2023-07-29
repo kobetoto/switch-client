@@ -22,7 +22,7 @@ function ItemsList() {
     return (
       <div key={el._id} style={{ border: "1px solid pink" }}>
         <Link to={`/items/${el._id}`}>
-          <img src={el.img} alt={el.name} />
+          <img src={el.image} alt={el.name} />
         </Link>
         <h4>{el.name}</h4>
         <p>{el.user.name}</p>
@@ -43,6 +43,12 @@ const ItemsListStyled = styled.div`
   align-content: flex-start;
 
   h4 {
+  }
+
+  img {
+    height: 226px;
+    width: 184px;
+    border-radius: 42px;
   }
 `;
 

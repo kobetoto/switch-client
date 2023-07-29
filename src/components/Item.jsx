@@ -99,6 +99,7 @@ const ItemStyled = styled.div`
   img {
     height: 226px;
     width: 184px;
+    border-radius: 42px;
   }
 
   button {
