@@ -11,6 +11,7 @@ import Signup from "./components/Signup";
 import AddItem from "./components/AddItem";
 import JoinUs from "./components/JoinUs";
 import Compliance from "./components/Compliance";
+import Item from "./components/Item";
 
 import "./css/App.css";
 
@@ -20,6 +21,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
+
+        <Route path="/items/:id" element={<Item />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />

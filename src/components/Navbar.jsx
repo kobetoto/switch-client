@@ -70,7 +70,7 @@ function Navbar() {
         {isLoggedIn && (
           <div className="dropdown-content">
             <a href="/user">Profil</a>
-            <a href="/user">Ajouter Objet</a>
+            <a href="/additem">Ajouter Objet</a>
             <a href="/joinus">Aide</a>
             <button
               onClick={() => {

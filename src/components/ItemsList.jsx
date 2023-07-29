@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import styled from "@emotion/styled";
-
 import myaxios from "../myaxios";
+import { Link } from "react-router-dom";
+
+import styled from "@emotion/styled";
 
 function ItemsList() {
   const [items, setItems] = useState([]);
@@ -20,9 +21,9 @@ function ItemsList() {
     console.log("el ====>", el);
     return (
       <div key={el._id} style={{ border: "1px solid pink" }}>
-        <a href="">
+        <Link to={`/items/${el._id}`}>
           <img src={el.img} alt={el.name} />
-        </a>
+        </Link>
         <h4>{el.name}</h4>
         <p>{el.user.name}</p>
         <p>{el.ville}</p>
