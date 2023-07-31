@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import myaxios from "../myaxios";
 import { Link } from "react-router-dom";
+import dayjs from "dayjs";
+import myaxios from "../myaxios";
+// import service from "../services/file-upload.service";
 
 import styled from "@emotion/styled";
 
@@ -16,19 +18,22 @@ function ItemsList() {
 
   console.log("items ====", items);
 
-  // [ <div>, <div> ]
   const itemcards = items.map(function (el) {
     console.log("el ====>", el);
+    let date = el.createdAt;
+    const dateFormat = dayjs(date).format("DD MMMM");
+    console.log("dateFormat ===>", dateFormat);
+
     return (
       <div key={el._id} style={{ border: "1px solid pink" }}>
         <Link to={`/items/${el._id}`}>
-          <img src={el.img} alt={el.name} />
+          <img src={el.imageUrl} alt={el.name} />
         </Link>
-        <h4>{el.name}</h4>
-        <p>{el.user.name}</p>
-        <p>{el.ville}</p>
-        <p>{el.description}</p>
-        <p>{el.createdAt}</p>
+        <p className="nom">{el.name}</p>
+        <p className="user">{el.user.name}</p>
+        {/* <p>{el.description}</p> */}
+        <p className="date">{dateFormat}</p>
+        <p className="ville">{el.ville}</p>
       </div>
     );
   });
@@ -42,7 +47,29 @@ const ItemsListStyled = styled.div`
   flex-wrap: wrap;
   align-content: flex-start;
 
-  h4 {
+  div {
+    margin: 42px;
+  }
+
+  img {
+    height: 226px;
+    width: 184px;
+    border-radius: 42px;
+  }
+
+  p {
+    text-align: left;
+    margin: 8px;
+  }
+
+  .nom,
+  .ville {
+    font-weight: bold;
+  }
+
+  .user,
+  .date {
+    font-weight: lighter;
   }
 `;
 

@@ -139,6 +139,11 @@ const CategoriesStyled = styled.div`
   div {
     flex-direction: column;
   }
+  p {
+  }
+  p:hover {
+    text-decoration: underline 1px;
+  }
 `;
 
 export default Categorie;

@@ -71,13 +71,17 @@ function Signup() {
           />
         </label>
 
-        <button>LOGIN</button>
+        <button>SIGNUP</button>
       </form>
     </SignupStyled>
   );
 }
 
 const SignupStyled = styled.div`
+  margin-top: 84px;
+  margin-bottom: 84px;
+  margin-left: 564px;
+
   height: 400px;
   width: 700px;
   margin-bottom: 42px;

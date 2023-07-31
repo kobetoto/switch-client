@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 
 import styled from "@emotion/styled";
-import "../css/button.css";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -68,8 +67,13 @@ function Login() {
 }
 
 const LoginStyled = styled.div`
+  margin-top: 126px;
+  margin-bottom: 126px;
+  margin-left: 564px;
   height: 300px;
   width: 810px;
+  border: 10px solid #ef4f67;
+  border-radius: 42px;
   border: 10px solid #ef4f67;
   border-radius: 42px;
   background-color: #ef4f67;
@@ -110,9 +114,22 @@ const LoginStyled = styled.div`
     height: 42px;
     width: 189px;
     margin: 30px;
+    color: #ef4f67;
     background-color: white;
     border: 1px solid white;
+    border-color: white;
     border-radius: 42px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 1s ease-out;
+  }
+
+  input:hover {
+    background-color: #ef4f67;
+    color: white;
+    border-radius: 42px;
+    border-color: white;
+    transform: fade();
   }
 `;
 
