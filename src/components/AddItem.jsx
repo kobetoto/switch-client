@@ -20,12 +20,8 @@ function AddItem() {
   const handleVilleInput = (event) => setVille(event.target.value);
   const handleDescriptionInput = (event) => setDescription(event.target.value);
 
-  // ******** this method handles the file upload ********
   const handleFileUpload = (e) => {
-    // console.log("The file to be uploaded is: ", e.target.files[0]);
-
     const uploadData = new FormData();
-
     // imageUrl => this name has to be the same as in the model since we pass
     // req.body to .create() method when creating a new movie in '/api/movies' POST route
     uploadData.append("imageUrl", e.target.files[0]);
@@ -35,7 +31,7 @@ function AddItem() {
     service
       .uploadImage(uploadData)
       .then((data) => {
-        // console.log("response is: ", response);
+        console.log("response is: ", data);
         // response carries "fileUrl" which we can use to update the state
         setImageUrl(data.fileUrl); //
       })
@@ -115,7 +111,7 @@ function AddItem() {
 
           <input type="file" onChange={(e) => handleFileUpload(e)} />
 
-          <button>Ajouter l'objet</button>
+          <button>Ajouter mon objet</button>
         </form>
       )}
       <form
@@ -180,7 +176,7 @@ function AddItem() {
 
         <input type="file" onChange={(e) => handleFileUpload(e)} />
 
-        <button>Ajouter l'objet</button>
+        <button>Ajouter mon objet</button>
       </form>
     </AddItemFormStyled>
   );

@@ -20,20 +20,32 @@ function ItemsList() {
 
   const itemcards = items.map(function (el) {
     console.log("el ====>", el);
+
+    /*format de la date*/
     let date = el.createdAt;
     const dateFormat = dayjs(date).format("DD MMMM");
-    console.log("dateFormat ===>", dateFormat);
+    // console.log("dateFormat ===>", dateFormat);
 
     return (
-      <div key={el._id} style={{ border: "1px solid pink" }}>
+      <div key={el._id} style={{}}>
+        <head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;400&family=Calligraffitti&family=Marck+Script&display=swap"
+            rel="stylesheet"
+          />
+        </head>
         <Link to={`/items/${el._id}`}>
           <img src={el.imageUrl} alt={el.name} />
         </Link>
-        <p className="nom">{el.name}</p>
-        <p className="user">{el.user.name}</p>
-        {/* <p>{el.description}</p> */}
-        <p className="date">{dateFormat}</p>
-        <p className="ville">{el.ville}</p>
+        <div className="info">
+          <p className="nom">{el.name}</p>
+          <p className="user">{el.user.name}</p>
+          {/* <p>{el.description}</p> */}
+          <p className="date">{dateFormat}</p>
+          <p className="ville">{el.ville}</p>
+        </div>
       </div>
     );
   });
@@ -42,34 +54,47 @@ function ItemsList() {
 }
 
 const ItemsListStyled = styled.div`
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-weight: lighter;
   color: black;
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
 
   div {
-    margin: 42px;
+    margin-left: 28px;
+    margin-right: 28px;
+    margin-top: 42px;
+    margin-bottom: 13px;
   }
 
   img {
-    height: 226px;
+    height: 213px;
     width: 184px;
-    border-radius: 42px;
+    border-radius: 24px;
+    border: 0.5px solid #ef4f6719;
   }
 
   p {
     text-align: left;
-    margin: 8px;
+    margin: 5px;
+  }
+
+  .info {
+    margin-top: 21px;
+    width: 184px;
+    background-color: #ffabb818;
+    border-radius: 24px;
+    padding: 13px;
   }
 
   .nom,
   .ville {
-    font-weight: bold;
+    font-weight: bolder;
   }
 
   .user,
   .date {
-    font-weight: lighter;
   }
 `;
 

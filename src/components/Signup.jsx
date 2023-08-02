@@ -11,7 +11,7 @@ function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -23,7 +23,18 @@ function Signup() {
 
   return (
     <SignupStyled>
-      <h1>SignUp</h1>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@100;400&family=Calligraffitti&family=Marck+Script&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
       <form
         onSubmit={(event) => {
           event.preventDefault();
@@ -43,6 +54,7 @@ function Signup() {
             });
         }}
       >
+        <h1>Inscrit toi ici!</h1>
         <label>
           <input
             type="text"
@@ -78,17 +90,8 @@ function Signup() {
 }
 
 const SignupStyled = styled.div`
-  margin-top: 84px;
-  margin-bottom: 84px;
-  margin-left: 564px;
-
-  height: 400px;
-  width: 700px;
-  margin-bottom: 42px;
-  border: 10px solid #ef4f67;
-  border-radius: 42px;
-  background-color: #ef4f67;
-  color: black;
+  height: 100vh;
+  font-family: "Be Vietnam Pro", sans-serif;
 
   h1 {
     color: white;
@@ -141,6 +144,52 @@ const SignupStyled = styled.div`
     border-radius: 42px;
     border-color: white;
     transform: fade();
+  }
+
+  .background {
+    width: 430px;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+  }
+  .background .shape {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+  }
+  .shape:first-child {
+    background: linear-gradient(#ef4f67, #ff8686d9);
+    left: -90px;
+    top: -5px;
+  }
+  .shape:last-child {
+    background: linear-gradient(to right, #ffab98, #ef4f67);
+    right: -40px;
+    bottom: -190px;
+  }
+
+  form {
+    height: 520px;
+    width: 400px;
+    background-color: #ef4f67d9;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 59%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.285);
+    box-shadow: 0 0 21px #ef4f67;
+    padding: 50px 35px;
+  }
+  form * {
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
   }
 `;
 

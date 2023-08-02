@@ -74,6 +74,12 @@ const FooterStyled = styled.div`
     margin-bottom: 8px;
   }
 
+  .logo {
+    padding: 8px;
+    background-color: #ef4f6791;
+    border-radius: 200px;
+  }
+
   img {
     height: 42px;
     width: 42px;

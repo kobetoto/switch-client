@@ -45,11 +45,16 @@ function Login() {
 
   return (
     <LoginStyled>
-      <h1>LOGIN</h1>
+      <div className="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
       <form onSubmit={handleLoginSubmit}>
+        <h1>Connection</h1>
         <input
           type="email"
           name="email"
+          placeholder="adresse email"
           value={email}
           onChange={handleEmailInput}
         />
@@ -57,6 +62,7 @@ function Login() {
         <input
           type="password"
           name="password"
+          placeholder="mot de passe"
           value={password}
           onChange={handlePasswordInput}
         />
@@ -67,17 +73,7 @@ function Login() {
 }
 
 const LoginStyled = styled.div`
-  margin-top: 126px;
-  margin-bottom: 126px;
-  margin-left: 564px;
-  height: 300px;
-  width: 810px;
-  border: 10px solid #ef4f67;
-  border-radius: 42px;
-  border: 10px solid #ef4f67;
-  border-radius: 42px;
-  background-color: #ef4f67;
-  color: black;
+  height: 100vh;
 
   h1 {
     color: white;
@@ -130,6 +126,52 @@ const LoginStyled = styled.div`
     border-radius: 42px;
     border-color: white;
     transform: fade();
+  }
+
+  .background {
+    width: 430px;
+    height: 520px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+  }
+  .background .shape {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+  }
+  .shape:first-child {
+    background: linear-gradient(300deg, #ef4f67, #f09e9e);
+    left: -90px;
+    top: -5px;
+  }
+  .shape:last-child {
+    background: linear-gradient(to left, #f5af9f, #ee3450);
+    right: -40px;
+    bottom: -190px;
+  }
+
+  form {
+    height: 520px;
+    width: 400px;
+    background-color: #ef4f67d9;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 59%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.285);
+    box-shadow: 0 0 21px #ef4f67;
+    padding: 50px 35px;
+  }
+  form * {
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
   }
 `;
 
