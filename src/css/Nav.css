@@ -3,9 +3,9 @@ nav{
     display: flex;
     justify-content: space-between;
       /* border: 1px solid black;  */
+      border-bottom: 1px solid rgb(229, 229, 229);
+
 }
-
-
 
 /*LOGO*/
 .logo{
@@ -13,11 +13,13 @@ nav{
   color: #ef4F67;
   font-family: 'Capriola', sans-serif;
   font-size: 30px;
+
   /* border: 1px solid green;  */
 }
 
 .logo > h1{
   margin-top: 0px;
+  margin-bottom: 0%;
 }
 
 .specialFont{
@@ -122,14 +124,16 @@ nav{
   /*MENU DEROULANT*/
 .dropbtn {
   background-color: #ffffff;
+  box-shadow: 0 1px 3px -2px #ef4F67;
   color: #ef4F67;
-  padding: 16px;
+  padding: 7px;
   font-size: 16px;
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.13);
+  border-radius: 24px;
   cursor: pointer;
 }
 
-/* Conteneur du menu déroulant */
+/* Conteneur du menu déroulant (icone)*/
 .dropdown {
   margin-right: 24px;
   margin-top: 42px;
@@ -139,23 +143,38 @@ nav{
 /* Contenu du menu déroulant (caché par défaut) */
 .dropdown-content {
   display: none;
-  border-radius: 10%;
+  border-radius: 21px;
   position:absolute;
+  top: 111px;
+  right: 111px;
+
   background-color: #fab0bb;
-  min-width: 69px;
+  min-width: 142px;
   min-height: fit-content;
   z-index: 1;
+  border: #ef4F67 1px solid; 
 }
 
 /* Liens à l'intérieur du menu déroulant */
 .dropdown-content a {
-  color: #ef4f67;
+  color: #4e4e4e;
   text-decoration: none;
   display: block;
-  font-size: small;
+  font-weight: lighter;
+  font-size: normal;
+  margin: 13px;
+  pointer-events:painted;
+
+}
+.dropdown-content a:hover{
+  color: white;  
 }
 
 /* Afficher le menu déroulant au survol */
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+svg:hover {
+  filter: invert(0.5) sepia(1) hue-rotate(300deg);
 }

@@ -39,12 +39,6 @@ function Footer() {
         </a>
         <a href="/">
           <img
-            src="https://seeklogo.com/images/F/facebook-icon-logo-AEF3A8F447-seeklogo.com.png"
-            alt="logo facebook"
-          />
-        </a>
-        <a href="/">
-          <img
             src="https://img.freepik.com/vecteurs-premium/logo-medias-sociaux-gradient-violet_197792-1883.jpg"
             alt="logo insta"
           />
@@ -74,7 +68,16 @@ const FooterStyled = styled.div`
   justify-content: space-between;
 
   a {
+    display: flex;
     text-decoration: none;
+    color: #ef4f6791;
+    margin-bottom: 8px;
+  }
+
+  .logo {
+    padding: 8px;
+    background-color: #ef4f6791;
+    border-radius: 200px;
   }
 
   img {

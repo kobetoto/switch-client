@@ -12,6 +12,10 @@ import AddItem from "./components/AddItem";
 import JoinUs from "./components/JoinUs";
 import Compliance from "./components/Compliance";
 import Item from "./components/Item";
+import EditProfil from "./components/EditProfil";
+import Caroussel from "./components/Caroussel";
+import ItemEdit from "./components/ItemEdit";
+import SwitchItem from "./components/SwitchItem";
 
 import "./css/App.css";
 
@@ -37,6 +41,15 @@ function App() {
         />
 
         <Route
+          path="/editProfil"
+          element={
+            <IsPrivate>
+              <EditProfil />
+            </IsPrivate>
+          }
+        />
+
+        <Route
           path="/additem"
           element={
             <IsPrivate>
@@ -46,6 +59,9 @@ function App() {
         />
         <Route path="/joinus" element={<JoinUs />} />
         <Route path="/compliance" element={<Compliance />} />
+        <Route path="/Caroussel" element={<Caroussel />} />
+        <Route path="/itemEdit/:id" element={<ItemEdit />} />
+        <Route path="/switchitem/:id" element={<SwitchItem />} />
       </Routes>
       <Footer />
     </div>
