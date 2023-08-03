@@ -56,9 +56,24 @@ function ItemEdit() {
       .catch((err) => console.log("Error while uploading the file: ", err));
   };
 
+  const deleteItem = () => {
+    myaxios
+      .delete(`/api/items/${params.id}`, {
+        headers: {
+          Authorization: `Bearer ${storeToken}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        navigate("/user");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   /*Token user*/
   const storeToken = localStorage.getItem("authToken");
-  console.log("storeToken additems ===>", storeToken);
 
   return (
     <ItemStyled>
@@ -128,6 +143,8 @@ function ItemEdit() {
 
             <button>Editer mon objet</button>
           </form>
+
+          <button onClick={deleteItem}>supprimer l'objet</button>
         </div>
       )}
     </ItemStyled>

@@ -65,11 +65,9 @@ function UserPage() {
         <a href={`/switchitem/${el._id}`}>
           <img src={el.imageUrl} alt={el.name} />
         </a>
-        <a href={`/itemEdit/${el._id}`}>
-          ...............................................✏️
-        </a>
+        <a href={`/itemEdit/${el._id}`}>✏️</a>
         <a href={`/switchitem/${el._id}`}>
-          <span className="itemsCard">
+          <span className="itemsCard" style={{ width: "" }}>
             <p>{el.name}</p>
             <p style={{ color: "#ef4f67" }}>
               switch: {el.proposedItems.length}
@@ -125,7 +123,7 @@ function UserPage() {
 
 const UserPageStyled = styled.div`
   margin-top: 84px;
-  height: 100vh;
+  height: 120vh;
   background-image: url("https://media.discordapp.net/attachments/961953685947158581/1135924070538563684/backgroundS.png?width=847&height=616");
   color: black;
   font-family: "Be Vietnam Pro", sans-serif;
@@ -161,7 +159,9 @@ const UserPageStyled = styled.div`
   .itemList {
     background-color: #ef4f67;
     display: flex;
+    text-align: center;
     margin: 10px;
+    margin-bottom: 42px;
   }
   img {
     margin: 34px;
@@ -176,10 +176,13 @@ const UserPageStyled = styled.div`
     border: 1px solid #ffcad2;
     background-color: white;
     color: #727272;
-    width: initial;
   }
   .item {
-    margin: 13px;
+    display: flex;
+    flex-direction: column;
+  }
+  a span {
+    text-align: center;
   }
 `;
 

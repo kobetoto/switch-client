@@ -6,10 +6,21 @@ function Footer() {
       styles={`@import url("https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap");
     `}
     >
-      <div className="logo">
-        <h1>
-          <span className="specialFont">S</span>
-        </h1>
+      <div className="links">
+        <ul>
+          <li>
+            {" "}
+            <a href="/joinus">Join us</a>
+          </li>
+          <li>
+            {" "}
+            <a href="/compliance">Compliance</a>
+          </li>
+          <li>
+            {" "}
+            <a href="">Help</a>
+          </li>
+        </ul>
       </div>
 
       <div className="links">
@@ -29,14 +40,14 @@ function Footer() {
         </ul>
       </div>
 
+      <div className="logo">
+        <h1>
+          <span className="specialFont">S</span>
+        </h1>
+      </div>
+
       <div className="social">
         <span>Retrouvez nous sur </span>
-        <a href="/">
-          <img
-            src="https://static.vecteezy.com/system/resources/previews/018/930/745/original/twitter-logo-twitter-icon-transparent-free-free-png.png"
-            alt="logo twitter"
-          />{" "}
-        </a>
         <a href="/">
           <img
             src="https://img.freepik.com/vecteurs-premium/logo-medias-sociaux-gradient-violet_197792-1883.jpg"
@@ -52,10 +63,6 @@ function Footer() {
       </div>
 
       <p className="design">DESIGN BY KOBE</p>
-
-      <div className="partenaires">
-        <img src="" alt="" />
-      </div>
     </FooterStyled>
   );
 }
@@ -64,22 +71,34 @@ const FooterStyled = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap");
 
   /* border: 1px solid black; */
+  padding: 8px;
+  background-color: #ef4f6791;
+  border-radius: 200px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
 
   a {
-    display: flex;
     text-decoration: none;
-    color: #ef4f6791;
+    color: #fcfcfc;
     margin-bottom: 8px;
   }
 
   .logo {
-    padding: 8px;
-    background-color: #ef4f6791;
-    border-radius: 200px;
+    font-size: 42px;
+    margin-left: 21px;
+    justify-content: center;
+    align-items: center;
   }
 
+  ul {
+    list-style: none;
+  }
+
+  .links {
+    display: flex;
+  }
   img {
     height: 42px;
     width: 42px;
@@ -88,6 +107,7 @@ const FooterStyled = styled.div`
   p {
     font-family: "Rock Salt", cursive;
     color: black;
+    margin-right: 21px;
     /* border: 1px solid rgb(255, 0, 0); */
   }
 `;

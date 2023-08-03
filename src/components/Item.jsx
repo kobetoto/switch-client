@@ -11,8 +11,7 @@ function Item() {
   const [items, setItems] = useState([]);
   const [Open, setOpen] = useState(false);
   const [DoubleOpen, setDoubleOpen] = useState(false);
-  const [selectRadioBtn, setSelectRadioBtn] = useState(null);
-  const [itemRadioBtn, setItemRadioBtn] = useState(null);
+  const [selectItem, setSelectItem] = useState(null);
 
   const { isLoggedIn, user } = useContext(AuthContext); //destructure l'objet retourner par le useContext
 
@@ -24,13 +23,6 @@ function Item() {
   };
   const propositionOK = () => {
     setDoubleOpen(!DoubleOpen);
-  };
-
-  const handleChange = (e) => {
-    setSelectRadioBtn(e.target.value === "true");
-  };
-  const itemHandleChange = () => {
-    setItemRadioBtn((itemRadioBtn) => !itemRadioBtn);
   };
 
   /* trouve l'item selectionné */
@@ -46,12 +38,25 @@ function Item() {
     return el._id === params.id;
   });
 
+  /*Selectionner un item pour l'echange*/
+
   /* filtre les items de l'user connecté pour quils puissent les proposé */
   let UserItemsList; // Définir en dehors du bloc if()
-
   if (isLoggedIn === true) {
     const UserItems = items.filter((el) => el.user._id === user._id);
     console.log("UserItems==>", UserItems);
+
+    //0 stocker le choix de l'utilisateur dans l'état d'un composant.
+    //1 quand le radio bouton selectio mettre à jour  l'état avec les informations de l'élément sélectionné
+    const handleSelectionChange = (e) => {
+      // trouve l'élément qui a le même id que la valeur du bouton radio
+      console.log("UserItems ===>", UserItems);
+      const item = UserItems.find((item) => item._id === e.target.value);
+
+      // stocke l'élément sélectionné dans l'état
+      setSelectItem(item);
+    };
+
     UserItemsList = UserItems.map(function (el) {
       return (
         <li key={el._id}>
@@ -63,9 +68,8 @@ function Item() {
             />
             <input
               type="radio"
-              value="true"
-              checked={itemRadioBtn === true}
-              onChange={itemHandleChange}
+              value={el._id}
+              onChange={handleSelectionChange}
             />
           </div>
         </li>
@@ -73,10 +77,10 @@ function Item() {
     });
   }
 
-  console.log("item ===>", item);
+  console.log("selectItem ===>", selectItem);
 
   const sswitch = () => {
-    item.proposedItems.push(itemselect.id);
+    item.proposedItems.push(selectItem._id);
   };
 
   return (
@@ -193,27 +197,6 @@ function Item() {
               </button>
             </h2>
 
-            <div className="radiobtn">
-              <label>
-                <input
-                  type="radio"
-                  value="true"
-                  checked={selectRadioBtn === true}
-                  onChange={handleChange}
-                />
-                OUI
-              </label>
-
-              <label>
-                <input
-                  type="radio"
-                  value="false"
-                  checked={selectRadioBtn === false}
-                  onChange={handleChange}
-                />
-                NON
-              </label>
-            </div>
             <div className="switchImg">
               <img
                 src={item.imageUrl}
@@ -235,10 +218,8 @@ function Item() {
                 </svg>
               </button>
               <img
-                src={
-                  "https://www.pngall.com/wp-content/uploads/14/Loading-PNG-Photo.png"
-                }
-                alt={item.name}
+                src={selectItem.imageUrl}
+                alt={selectItem.name}
                 style={{
                   height: "250px",
                   width: "200px",

@@ -11,7 +11,7 @@ function ItemsList() {
 
   useEffect(() => {
     myaxios.get("/api/items").then((response) => {
-      console.log("response.data", response.data);
+      //console.log("response.data", response.data);
       setItems(response.data);
     });
   }, []);
@@ -19,7 +19,7 @@ function ItemsList() {
   console.log("items ====", items);
 
   const itemcards = items.map(function (el) {
-    console.log("el ====>", el);
+    //console.log("el ====>", el);
 
     /*format de la date*/
     let date = el.createdAt;

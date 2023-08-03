@@ -30,8 +30,10 @@ function SwitchItem() {
     <SwitchItemStyled>
       {item && (
         <div className="zones">
-          <h2>{item.name} </h2>
-          <img src={item.imageUrl} alt={item.name} />
+          <div className="item">
+            <h2>{item.name} </h2>
+            <img src={item.imageUrl} alt={item.name} />
+          </div>
           <div className="info&btn">
             <button onClick={validation}>
               <svg
@@ -118,8 +120,19 @@ const SwitchItemStyled = styled.div`
 
   .zones {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
   }
+
+  .item {
+    background-color: #ef4f67;
+    border-radius: 21px;
+    padding: 21px;
+  }
+
+  .item h2 {
+    color: white;
+  }
+
   .info {
     height: 50%;
     display: flex;
