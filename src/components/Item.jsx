@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-import { Carousel } from "primereact/carousel";
 
 import myaxios from "../myaxios";
 
@@ -11,7 +10,9 @@ function Item() {
   // const [proposeItem, setProposeItem] = useState([]);
   const [items, setItems] = useState([]);
   const [Open, setOpen] = useState(false);
+  const [DoubleOpen, setDoubleOpen] = useState(false);
   const [selectRadioBtn, setSelectRadioBtn] = useState(null);
+  const [itemRadioBtn, setItemRadioBtn] = useState(null);
 
   const { isLoggedIn, user } = useContext(AuthContext); //destructure l'objet retourner par le useContext
 
@@ -21,9 +22,15 @@ function Item() {
   const validation = () => {
     setOpen(!Open);
   };
+  const propositionOK = () => {
+    setDoubleOpen(!DoubleOpen);
+  };
 
   const handleChange = (e) => {
     setSelectRadioBtn(e.target.value === "true");
+  };
+  const itemHandleChange = () => {
+    setItemRadioBtn((itemRadioBtn) => !itemRadioBtn);
   };
 
   /* trouve l'item selectionné */
@@ -38,75 +45,39 @@ function Item() {
   const item = items.find(function (el) {
     return el._id === params.id;
   });
-  console.log(
-    "fiche produit de l'item choisit sur la page d'acceuil===>",
-    item
-  );
 
   /* filtre les items de l'user connecté pour quils puissent les proposé */
   let UserItemsList; // Définir en dehors du bloc if()
-  const arrayUserItemsList = [];
 
   if (isLoggedIn === true) {
     const UserItems = items.filter((el) => el.user._id === user._id);
     console.log("UserItems==>", UserItems);
-
-    // Créez un tableau d'images à partir des éléments de l'utilisateur
-    if (UserItems) {
-      const imagesUserItems = UserItems.map((el) => {
-        arrayUserItemsList.push(el.imageUrl);
-        return {
-          src: el.imageUrl,
-        };
-      });
-
-      console.log("arrayUserItemsList==>", arrayUserItemsList);
-
-      const imageTemplate = (image) => {
-        return (
+    UserItemsList = UserItems.map(function (el) {
+      return (
+        <li key={el._id}>
           <div>
             <img
-              src={image.src}
-              alt={image.alt}
-              style={{ width: "100px", height: "100px" }}
+              src={el.imageUrl}
+              alt={el.name}
+              style={{ height: "400px", width: "400px" }}
+            />
+            <input
+              type="radio"
+              value="true"
+              checked={itemRadioBtn === true}
+              onChange={itemHandleChange}
             />
           </div>
-        );
-      };
-
-      /* 🎠🎠🎠 */
-
-      // Définissez votre carrousel ici avec le tableau d'images que vous avez créé
-      console.log("imagesUserItems caroussel===>", imagesUserItems);
-      UserItemsList = (
-        <Carousel
-          value={imagesUserItems}
-          itemTemplate={imageTemplate}
-          circular
-          autoplayInterval={3000}
-        />
+        </li>
       );
-    }
+    });
   }
-  // if (isLoggedIn === true) {
-  //   const UserItems = items.filter((el) => el.user._id === user._id);
-  //   console.log("UserItems==>", UserItems);
 
-  //   UserItemsList = UserItems.map(function (el) {
-  //     // Remplir à l'intérieur du bloc if
-  //     console.log("el UserItemsList  ====>", el);
+  console.log("item ===>", item);
 
-  //     return (
-  //       <div key={el._id} style={{ border: "1px solid pink" }}>
-  //         <img src={el.imageUrl} alt={el.name} />
-  //       </div>
-  //     );
-  //   });
-  // }
-
-  // const proposeItem = (proposeItem) => {
-  //   item.proposedItems.push(proposeItem);
-  // };
+  const sswitch = () => {
+    item.proposedItems.push(itemselect.id);
+  };
 
   return (
     <ItemStyled>
@@ -172,10 +143,11 @@ function Item() {
               </a>
             </div>
           )}
+
           {isLoggedIn && (
             <div className="itemList">
               <h1> vos Objets</h1>
-              {UserItemsList && <div>{UserItemsList}</div>}
+              <ul>{UserItemsList}</ul>
             </div>
           )}
         </div>
@@ -252,8 +224,16 @@ function Item() {
                 }}
               />
 
-              <button>Switch</button>
-
+              <button onClick={propositionOK}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="44"
+                  viewBox="0 -960 960 960"
+                  width="44"
+                >
+                  <path d="m482-200 114-113-114-113-42 42 43 43q-28 1-54.5-9T381-381q-20-20-30.5-46T340-479q0-17 4.5-34t12.5-33l-44-44q-17 25-25 53t-8 57q0 38 15 75t44 66q29 29 65 43.5t74 15.5l-38 38 42 42Zm165-170q17-25 25-53t8-57q0-38-14.5-75.5T622-622q-29-29-65.5-43T482-679l38-39-42-42-114 113 114 113 42-42-44-44q27 0 55 10.5t48 30.5q20 20 30.5 46t10.5 52q0 17-4.5 34T603-414l44 44ZM480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-156t86-127Q252-817 325-848.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 82-31.5 155T763-197.5q-54 54.5-127 86T480-80Zm0-60q142 0 241-99.5T820-480q0-142-99-241t-241-99q-141 0-240.5 99T140-480q0 141 99.5 240.5T480-140Zm0-340Z" />
+                </svg>
+              </button>
               <img
                 src={
                   "https://www.pngall.com/wp-content/uploads/14/Loading-PNG-Photo.png"
@@ -265,6 +245,60 @@ function Item() {
                 }}
               />
             </div>
+          </div>
+        </div>
+      )}
+      {DoubleOpen && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: "#f46a7e",
+              height: "650px",
+              width: "700px",
+              padding: "42px",
+              borderRadius: "24px",
+            }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="68"
+              viewBox="0 -960 960 960"
+              width="68"
+            >
+              <path d="m346-60-76-130-151-31 17-147-96-112 96-111-17-147 151-31 76-131 134 62 134-62 77 131 150 31-17 147 96 111-96 112 17 147-150 31-77 130-134-62-134 62Zm27-79 107-45 110 45 67-100 117-30-12-119 81-92-81-94 12-119-117-28-69-100-108 45-110-45-67 100-117 28 12 119-81 94 81 92-12 121 117 28 70 100Zm107-341Zm-43 133 227-225-45-41-182 180-95-99-46 45 141 140Z" />
+            </svg>
+            <h2
+              style={{
+                color: "white",
+                fontSize: "42px",
+              }}
+            >
+              SWITCH VALIDE
+            </h2>
+            <h2
+              style={{
+                color: "white",
+                fontSize: "42px",
+              }}
+            >
+              ref: 1234
+            </h2>
+
+            <p style={{ fontSize: "70px" }}>🎉</p>
+            <h4>Un email de confirmation vous a été envoyé</h4>
+            <a href="/">retour a la page d'acceuil</a>
           </div>
         </div>
       )}
@@ -360,6 +394,20 @@ const ItemStyled = styled.div`
     display: flex;
     flex-direction: center;
     justify-content: space-around;
+  }
+
+  ul {
+    padding-left: 0;
+    list-style: none;
+
+    display: flex;
+    gap: 42px;
+
+    height: 450px;
+    width: 450px;
+    overflow: auto;
+  }
+  li {
   }
 `;
 

@@ -1,8 +1,8 @@
 import axios from "axios";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/auth.context";
+import service from "../services/file-upload.service";
 
 import myaxios from "../myaxios";
 
@@ -33,14 +33,28 @@ function ItemEdit() {
       setItems(response.data);
     });
   }, []);
-  // console.log("params.id ===>", params.id);
+
   const item = items.find(function (el) {
     return el._id === params.id;
   });
-  console.log(
-    "fiche produit de l'item choisit sur la page d'acceuil===>",
-    item
-  );
+
+  const handleFileUpload = (e) => {
+    const uploadData = new FormData();
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new movie in '/api/movies' POST route
+    uploadData.append("imageUrl", e.target.files[0]);
+
+    console.log("e.target.files[0] ===>", e.target.files);
+
+    service
+      .uploadImage(uploadData)
+      .then((data) => {
+        console.log("response is: ", data);
+        // response carries "fileUrl" which we can use to update the state
+        setImageUrl(data.fileUrl); //
+      })
+      .catch((err) => console.log("Error while uploading the file: ", err));
+  };
 
   /*Token user*/
   const storeToken = localStorage.getItem("authToken");
@@ -89,6 +103,30 @@ function ItemEdit() {
                 onChange={handleNameInput}
               />
             </label>
+            <label>
+              Ville
+              <input
+                type="text"
+                name="ville"
+                value={ville}
+                placeholder="ville où se fera le switch"
+                onChange={handleVilleInput}
+              />
+            </label>
+            <label>
+              Description
+              <textarea
+                type="text"
+                name="description"
+                value={description}
+                placeholder="....dites nous en plus sur votre trésor"
+                onChange={handleDescriptionInput}
+              />
+            </label>
+
+            <input type="file" onChange={(e) => handleFileUpload(e)} />
+
+            <button>Editer mon objet</button>
           </form>
         </div>
       )}
@@ -111,6 +149,20 @@ const ItemStyled = styled.div`
     height: 420px;
     width: 210;
     border-radius: 42px;
+  }
+
+  input {
+    height: 42px;
+    width: 189px;
+    margin: 30px;
+    color: #ef4f67;
+    background-color: white;
+    border: 1px solid white;
+    border-color: #ef4f67;
+    border-radius: 42px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 1s ease-out;
   }
 `;
 export default ItemEdit;

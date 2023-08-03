@@ -62,13 +62,20 @@ function UserPage() {
   const imagesItemsUsers = UserItems.map((el) => {
     return (
       <div key={el._id} className="item">
-        <a href={`/itemEdit/${el._id}`}>
+        <a href={`/switchitem/${el._id}`}>
           <img src={el.imageUrl} alt={el.name} />
         </a>
-        <span className="itemsCard">
-          <p>{el.name}</p>
-          <p style={{ color: "#ef4f67" }}>switch: {el.proposedItems.length}</p>
-        </span>
+        <a href={`/itemEdit/${el._id}`}>
+          ...............................................✏️
+        </a>
+        <a href={`/switchitem/${el._id}`}>
+          <span className="itemsCard">
+            <p>{el.name}</p>
+            <p style={{ color: "#ef4f67" }}>
+              switch: {el.proposedItems.length}
+            </p>
+          </span>
+        </a>
       </div>
     );
   });
