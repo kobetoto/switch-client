@@ -21,7 +21,7 @@ function Item() {
   const validation = () => {
     setOpen(!Open);
   };
-  const propositionOK = () => {
+  const nextvalidation = () => {
     setDoubleOpen(!DoubleOpen);
   };
 
@@ -80,7 +80,24 @@ function Item() {
   console.log("selectItem ===>", selectItem);
 
   const sswitch = () => {
+    console.log("item.proposedItems SWITCH===>", item.proposedItems);
+    console.log("selectItem._id  SWITCH===>", selectItem._id);
+
     item.proposedItems.push(selectItem._id);
+
+    // axios
+    //   .patch("/api/items/")
+    //   .then((response) => {
+    //     console.log(response.data); // Le document mis à jour
+    //   })
+    //   .catch((error) => {
+    //     console.error("Erreur de mise à jour de l'utilisateur", error);
+    //   });
+  };
+
+  const handleClick = () => {
+    nextvalidation();
+    sswitch();
   };
 
   return (
@@ -207,7 +224,7 @@ function Item() {
                 }}
               />
 
-              <button onClick={propositionOK}>
+              <button onClick={handleClick}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="44"
@@ -278,7 +295,10 @@ function Item() {
             </h2>
 
             <p style={{ fontSize: "70px" }}>🎉</p>
-            <h4>Un email de confirmation vous a été envoyé</h4>
+            <h4>
+              Un email de confirmation vous sera envoyé lorsque le switcheur
+              aura fait son choix
+            </h4>
             <a href="/">retour a la page d'acceuil</a>
           </div>
         </div>

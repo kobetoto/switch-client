@@ -7,24 +7,63 @@ import styled from "@emotion/styled";
 
 function SwitchItem() {
   const [items, setItems] = useState([]);
+  const [selectItem, setSelectItem] = useState(null);
   const [Open, setOpen] = useState(false);
 
   const params = useParams();
+  let proposedItemsList;
+
+  const handleSelectionChange = (e) => {
+    // trouve l'élément qui a le même id que la valeur du bouton radio
+    console.log("UserItems ===>", UserItems);
+    const item = UserItems.find((item) => item._id === e.target.value);
+
+    // stocke l'élément sélectionné dans l'état
+    setSelectItem(item);
+  };
 
   //modal
   const validation = () => {
     setOpen(!Open);
   };
 
+  //recupere la liste des items
   useEffect(() => {
     myaxios.get("/api/items").then((response) => {
       setItems(response.data);
     });
   }, []);
 
+  //trouve l'objet "principal"
   const item = items.find(function (el) {
     return el._id === params.id;
   });
+
+  //trouve les objets proposés
+  const proposedItems = items.find(function (el) {
+    return el.proposedItems[1] === params.id;
+  });
+
+  if (proposedItems) {
+    proposedItemsList = proposedItems.map(function (el) {
+      return (
+        <li key={el._id}>
+          <div>
+            <img
+              src={el.imageUrl}
+              alt={el.name}
+              style={{ height: "400px", width: "400px" }}
+            />
+            <input
+              type="radio"
+              value={el._id}
+              onChange={handleSelectionChange}
+            />
+          </div>
+        </li>
+      );
+    });
+  }
 
   return (
     <SwitchItemStyled>
@@ -49,7 +88,7 @@ function SwitchItem() {
 
           <div className="itemList">
             <h1> Choisir un objet</h1>
-            <ul>{}</ul>
+            <ul>{proposedItemsList}</ul>
           </div>
         </div>
       )}
