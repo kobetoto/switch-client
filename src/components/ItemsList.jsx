@@ -6,7 +6,7 @@ import myaxios from "../myaxios";
 
 import styled from "@emotion/styled";
 
-function ItemsList() {
+function ItemsList(props) {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -60,19 +60,15 @@ const ItemsListStyled = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
+  border: 1px solid #ef4f67;
+  border-radius: 24px;
+  background-color: #f4dade;
 
   div {
-    margin-left: 28px;
-    margin-right: 28px;
+    margin-left: 20px;
+    margin-right: 20px;
     margin-top: 42px;
     margin-bottom: 13px;
-  }
-
-  img {
-    height: 213px;
-    width: 184px;
-    border-radius: 24px;
-    border: 0.5px solid #ef4f6719;
   }
 
   p {
@@ -82,7 +78,7 @@ const ItemsListStyled = styled.div`
 
   .info {
     margin-top: 21px;
-    width: 184px;
+    width: 124px;
     background-color: #ffabb818;
     border-radius: 24px;
     padding: 13px;
@@ -98,8 +94,8 @@ const ItemsListStyled = styled.div`
   }
 
   img {
-    height: 226px;
-    width: 184px;
+    height: 160px;
+    width: 134px;
     border-radius: 42px;
   }
 `;

@@ -15,8 +15,7 @@ function SwitchItem() {
 
   const handleSelectionChange = (e) => {
     // trouve l'élément qui a le même id que la valeur du bouton radio
-    console.log("UserItems ===>", UserItems);
-    const item = UserItems.find((item) => item._id === e.target.value);
+    const item = selectItem.find((item) => item._id === e.target.value);
 
     // stocke l'élément sélectionné dans l'état
     setSelectItem(item);
